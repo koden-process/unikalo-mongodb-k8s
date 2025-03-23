@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: APP_NAME
+  namespace: argocd
+spec:
+  project: PROJECT_NAME
+  source:
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 13.6.5
+    chart: mongodb
+    helm:
+      valueFiles:
+        - https://raw.githubusercontent.com/koden-process/meow-k8s/refs/heads/main/mongodb/values.yaml
+      values: |
+        auth:
+          existingSecret: SECRET_NAME
+          usernames:
+            - USER_NAME
+          databases:
+            - DATABASE_NAME
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: NAMESPACE
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
