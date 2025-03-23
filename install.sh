@@ -18,7 +18,7 @@ sed -i '' "s/DATABASE_NAME/$DATABASE_NAME/g" app.yaml
 
 kubectl create secret generic "$SECRET_NAME" -n "$NAMESPACE" \
   --from-literal=mongodb-root-password="$DATABASE_ROOT_PASS" \
-  --from-literal=mongodb-password="$DATABASE_USER_PASS" \
+  --from-literal=mongodb-passwords="$DATABASE_USER_PASS" \
   --from-literal=mongodb-uri="mongodb://root:$DATABASE_ROOT_PASS@$APP_NAME.$NAMESPACE.svc.cluster.local:27017"
 
 kubectl apply -f app.yaml -n argocd
