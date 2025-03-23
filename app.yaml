@@ -11,7 +11,7 @@ spec:
     chart: mongodb
     helm:
       valueFiles:
-        - https://raw.githubusercontent.com/koden-process/meow-k8s/refs/heads/main/mongodb/values.yaml
+        - https://raw.githubusercontent.com/koden-process/unikalo-mongodb-k8s/refs/heads/main/values.yaml
       values: |
         auth:
           existingSecret: unikalo-mongodb-secret
