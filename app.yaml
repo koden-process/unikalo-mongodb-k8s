@@ -1,10 +1,10 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: APP_NAME
+  name: unikalo-mongodb
   namespace: argocd
 spec:
-  project: PROJECT_NAME
+  project: koden-clients
   source:
     repoURL: https://charts.bitnami.com/bitnami
     targetRevision: 13.6.5
@@ -14,14 +14,14 @@ spec:
         - https://raw.githubusercontent.com/koden-process/meow-k8s/refs/heads/main/mongodb/values.yaml
       values: |
         auth:
-          existingSecret: SECRET_NAME
+          existingSecret: unikalo-mongodb-secret
           usernames:
-            - USER_NAME
+            - unikalo
           databases:
-            - DATABASE_NAME
+            - meow
   destination:
     server: https://kubernetes.default.svc
-    namespace: NAMESPACE
+    namespace: koden-clients
   syncPolicy:
     automated:
       prune: true
